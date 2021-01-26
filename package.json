@@ -1,0 +1,26 @@
+{
+  "name": "final_astro",
+  "version": "1.0.0",
+  "description": "badme!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rahul1237/final_as.git"
+  },
+  "author": "rahul mahajan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rahul1237/final_as/issues"
+  },
+  "homepage": "https://github.com/rahul1237/final_as#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "https": "^1.0.0",
+    "nodemon": "^2.0.7"
+  }
+}
