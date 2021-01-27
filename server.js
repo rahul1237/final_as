@@ -8,6 +8,10 @@ app.use(bp.urlencoded({extended:true}))
 
 app.set('view engine', 'ejs')
 
+app.use(express.static(__dirname+'/public'))
+
+// console.log(__dirname);
+
 app.get('/',function(req,res){
     res.sendFile(__dirname+'/'+'index.html')
 })
@@ -18,8 +22,9 @@ app.post('/',function(req,res){
 
 app.post('/details',function(req,res){
     const place_of_birth = req.body.place_of_birth
-    // const api_id = 'ea7a226049f088f392cd6c102bd5f5c0'
     const url='http://api.openweathermap.org/data/2.5/weather?q=' + place_of_birth + '&appid=ea7a226049f088f392cd6c102bd5f5c0'
+
+    console.log(req.body.date_of_birth);
 
     http.get(url,function(response){
         response.on('data',function(data){
