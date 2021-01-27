@@ -2,9 +2,25 @@
 <html lang="en">
 <head>
     <title>Document</title>
-    <link rel="stylesheet" href="../public/css/lat_and_lon.css">
+    <link rel="stylesheet" href="css/lat_and_lon.css">
 </head>
 <body>
-    <h1>latitude and longitude of <%= place %> is <%= latt %> and <%= lonn %> respectively!</h1>
+    <p><%= place %></p>
+    <ul class='position' type='disc'>
+        <li>latitude: <%= latt %></li>
+        <li>longitude: <%= lonn %></li>
+        <li>sun:</li>
+        <li>moon:</li>
+        <li>mercury:</li>
+        <li>venus:</li>
+        <li>mars:</li>
+        <li>jupiter:</li>
+        <li>saturn:</li>
+        <li>uranus:</li>
+        <li>pluto:</li>
+        <li>node:</li>
+    </ul>
+
+    <button type="submit">continue</button>
 </body>
 </html>

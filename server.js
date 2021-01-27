@@ -6,10 +6,20 @@ const app = express()
 
 app.use(bp.urlencoded({extended:true}))
 
+app.use(express.static('public'))
+app.use('/css', express.static(__dirname + 'public/css'))
+// app.use('/js', express.static(__dirname + 'public/js'))
+app.use('/imgs', express.static(__dirname + 'public/imgs'))
+
+// Set Views
+app.set('views', './views')
 app.set('view engine', 'ejs')
 
-app.use(express.static(__dirname+'/public'))
+// app.set('views' , './views')
+// app.set('view engine', 'ejs')
 
+// app.use(express.static('public'))
+// app.use('/css', express.static(__dirname + 'public/css'))
 // console.log(__dirname);
 
 app.get('/',function(req,res){
@@ -33,22 +43,22 @@ app.post('/details',function(req,res){
             const longitude = api_data.coord.lon
 
             if(latitude>=0){
-                var degree = Math.floor(latitude)
-                var minutes = Math.floor((latitude-degree)*60)
+                var degree = Math.abs(Math.floor(latitude))
+                var minutes = Math.abs(Math.floor((latitude-degree)*60))
                 var lati = 'N ' + degree + '°' + minutes + "'"
             }else{
-                var degree = Math.floor(latitude)
-                var minutes = Math.floor((latitude-degree)*60)
+                var degree = Math.abs(Math.floor(latitude))
+                var minutes = Math.abs(Math.floor((latitude-degree)*60))
                 var lati = 'S ' + degree + '°' + minutes + "'"
             }
 
             if(longitude>=0){
-                var degree = Math.floor(longitude)
-                var minutes = Math.floor((longitude-degree)*60)
+                var degree = Math.abs(Math.floor(longitude))
+                var minutes = Math.abs(Math.floor((longitude-degree)*60))
                 var longi = 'E ' + degree + '°' + minutes + "'"
             }else{
-                var degree = Math.floor(longitude)
-                var minutes = Math.floor((longitude-degree)*60)
+                var degree = Math.abs(Math.floor(longitude))
+                var minutes = Math.abs(Math.floor((longitude-degree)*60))
                 var longi = 'W ' + degree + '°' + minutes + "'"
             }
             res.render('lat_and_lon',{latt:lati , lonn:longi , place:place_of_birth})
