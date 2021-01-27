@@ -1,8 +1,13 @@
+const { ObjectId } = require('mongodb')
+
 const express = require('express')
 const bp = require('body-parser')
 const http = require('http')
-
 const app = express()
+const mongoose = require('mongoose')
+const positions = require('./data')
+let obj = {}
+let obj1
 
 app.use(bp.urlencoded({extended:true}))
 
@@ -33,8 +38,8 @@ app.post('/',function(req,res){
 app.post('/details',function(req,res){
     const place_of_birth = req.body.place_of_birth
     const url='http://api.openweathermap.org/data/2.5/weather?q=' + place_of_birth + '&appid=ea7a226049f088f392cd6c102bd5f5c0'
-
-    console.log(req.body.date_of_birth);
+    // console.log(req.body.date_of_birth);
+    const date_of_birth = req.body.date_of_birth
 
     http.get(url,function(response){
         response.on('data',function(data){
@@ -61,7 +66,23 @@ app.post('/details',function(req,res){
                 var minutes = Math.abs(Math.floor((longitude-degree)*60))
                 var longi = 'W ' + degree + '°' + minutes + "'"
             }
-            res.render('lat_and_lon',{latt:lati , lonn:longi , place:place_of_birth})
+            res.render('lat_and_lon',{latt:lati , lonn:longi , place:place_of_birth , obj:obj})
+        
+            mongoose.connect('mongodb://localhost/as',{ useNewUrlParser: true },{ useUnifiedTopology: true })
+            positions.findOne({DATE:date_of_birth},function(err,positions){
+                if(err) console.warn(err)
+                console.log('user:',positions)
+               
+                console.warn(positions)
+                obj=positions
+                obj1={
+                    ...obj._doc
+                }
+                console.log('this is rahulhjkl;' , obj1)
+            })
+
+            console.log('this is rahul' , obj)
+
         })
     })
 })
