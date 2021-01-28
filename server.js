@@ -1,15 +1,17 @@
-const { ObjectId } = require('mongodb')
-
+// const { ObjectId } = require('mongodb')
 const express = require('express')
 const bp = require('body-parser')
 const http = require('http')
 const app = express()
 const mongoose = require('mongoose')
 const positions = require('./data')
+// const liverreload = require('livereload')
 let obj = {}
 let obj1
 
 app.use(bp.urlencoded({extended:true}))
+
+// app.
 
 app.use(express.static('public'))
 app.use('/css', express.static(__dirname + 'public/css'))
@@ -56,25 +58,30 @@ app.post('/details',function(req,res){
                 var minutes = Math.abs(Math.floor((longitude-degree)*60))
                 var longi = 'W ' + degree + '°' + minutes + "'"
             }
-            res.render('lat_and_lon',{latt:lati , lonn:longi , place:place_of_birth , obj:obj})
+            
         
             mongoose.connect('mongodb://localhost/as',{ useNewUrlParser: true },{ useUnifiedTopology: true })
             positions.findOne({DATE:date_of_birth},function(err,positions){
                 if(err) console.warn(err)
-                console.log('user:',positions)
+                // console.log('user:',positions)
                
                 console.warn(positions)
                 obj=positions
+
                 obj1={
                     ...obj._doc
                 }
-                console.log('this is rahulhjkl;' , obj1)
+
+                res.render('lat_and_lon',{latt:lati , lonn:longi , place:place_of_birth , obj:obj})
+                
+                // console.log('this is rahulhjkl;' , obj1)
             })
-
-            console.log('this is rahul' , obj)
-
         })
     })
+})
+
+app.post('/nextpage',function(req,res){
+    res.sendFile(__dirname+'/'+'nextpage.html')
 })
 
 app.listen(5555,function(){

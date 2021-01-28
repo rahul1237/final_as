@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="css/lat_and_lon.css">
 </head>
 <body>
-    <p><%= place %></p>
+    <h1>place of birth: <%= place %></h1>
     <ul class='position' type='disc'>
         <li>latitude: <%= latt %></li>
         <li>longitude: <%= lonn %></li>
@@ -20,7 +20,10 @@
         <li>pluto:  <%= obj.PLUTO %> </li>
         <li>node:  <%= obj.NODE %> </li>
     </ul>
-
-    <button type="submit">continue</button>
+    
+    <form action="/nextpage" method="POST">
+        <a href="/nextpage.html" class="btn head_button">continue >></a>
+    </form>
+    
 </body>
 </html>
