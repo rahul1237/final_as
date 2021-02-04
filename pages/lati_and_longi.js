@@ -45,6 +45,8 @@ lati_and_longi_page.post('/details',function(req,res){
                 console.warn(positions)
                 obj=positions
 
+                // export  {obj}
+
                 obj1={
                     ...obj._doc
                 }
@@ -58,4 +60,9 @@ lati_and_longi_page.post('/details',function(req,res){
     })
 })
 
+
+lati_and_longi_page.post('/')
+
+
 module.exports = lati_and_longi_page
+

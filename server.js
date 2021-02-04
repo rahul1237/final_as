@@ -4,7 +4,7 @@ const app = express()
 const home_page = require('./pages/home')
 const detail_page = require('./pages/details')
 const lati_and_longi_page = require('./pages/lati_and_longi')
-const next_page = require('./pages/next')
+const next_page = require('./pages/nextpage')
 
 app.use(bp.urlencoded({extended:true}))
 
@@ -19,7 +19,6 @@ app.set('view engine', 'ejs')
 
 app.use(lati_and_longi_page)
 app.use(next_page)
-
 
 
 app.listen(5555,function(){
